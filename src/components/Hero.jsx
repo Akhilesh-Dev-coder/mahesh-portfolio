@@ -130,14 +130,16 @@ export default function Hero({ onExploreShowreel }) {
             <Play className="w-4 h-4 fill-white" />
             <span>Explore Showreel</span>
           </button>
-          <button
-            onClick={scrollToContact}
+          <a
+            href="https://wa.me/917907593132?text=Hi%20Mahesh%2C%20I%27d%20like%20to%20book%20a%20consultation%20for%20my%20AI%20video%20project!"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3.5 rounded-full glass-button text-sm font-semibold uppercase tracking-wider text-white border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.02] cursor-pointer"
             data-hover
           >
             <Calendar className="w-4 h-4 text-brand-cyan" />
             <span>Book Consultation</span>
-          </button>
+          </a>
         </div>
 
         {/* Premium Showreel Interactive Preview Card */}

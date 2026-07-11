@@ -17,11 +17,29 @@ export default function Contact() {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
 
-    setFormStatus('sending');
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', company: '', message: '', type: 'Product Commercial' });
-    }, 1500);
+    const subject = `Inquiry: ${formData.type} from ${formData.name}`;
+    const body = `Hello Mahesh,
+
+I'd like to discuss a project with you. Here are the details:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'N/A'}
+Project Type: ${formData.type}
+
+Message:
+${formData.message}
+
+Best regards,
+${formData.name}`;
+
+    const mailtoUrl = `mailto:maheshchandu431@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open default mail client
+    window.location.href = mailtoUrl;
+
+    setFormStatus('success');
+    setFormData({ name: '', email: '', company: '', message: '', type: 'Product Commercial' });
   };
 
 
@@ -174,6 +192,12 @@ export default function Contact() {
                         className="w-full px-4 py-3 rounded-xl glass-input text-sm text-white placeholder-stone-500 resize-none"
                       />
                     </div>
+
+                    {formStatus === 'error' && (
+                      <div className="text-[#ef4444] text-xs text-center font-medium bg-[#ef4444]/10 border border-[#ef4444]/20 py-2.5 px-4 rounded-xl animate-fadeIn">
+                        Failed to send message. Please check your connection and try again.
+                      </div>
+                    )}
 
                     {/* Submit Button */}
                     <button
